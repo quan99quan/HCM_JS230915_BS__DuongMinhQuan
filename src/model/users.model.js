@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export default {
-    createUser: async ({ name, email, age }) => {
+    createUser: async ({ name, description }) => {
         try {
             return await prisma.users.create({
                 data: {
                     name,
-                    email,
-                    age
+                    description
+                    
                 }
             })
         } catch (err) {
@@ -33,7 +33,7 @@ export default {
             throw new Error(` ID error ${err.message}`)
         }
     },
-    updateUser: async (id, { name, email, age }) => {
+    updateUser: async (id, { name, description }) => {
         try {
             return await prisma.users.update({
                 where: {
@@ -41,8 +41,7 @@ export default {
                 },
                 data: {
                     name,
-                    email,
-                    age
+                    description
                 }
             })
         } catch (err) {

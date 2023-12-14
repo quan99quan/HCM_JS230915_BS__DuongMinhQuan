@@ -3,8 +3,10 @@ import usersModel from "../model/users.model";
 export default {
     createUser: async (req,res)=>{
         try{
-            const {name,email,age}= req.body;
-            const newUser = await usersModel.createUser({name,email,age});
+            const {name,description}= req.body;
+          
+            const newUser = await usersModel.createUser({name,description});
+            
             return res.status(200).json(newUser);
         }catch (err){
             res.status(500).json({err:"Server fail"})
@@ -32,8 +34,8 @@ export default {
     updateUser:async (req,res)=>{
         try{
             const userId =parseInt(req.params.id)
-            const {name,email,age}=req.body;
-const update= await usersModel.updateUser(userId,{name,email,age})
+            const {name,description}=req.body;
+const update= await usersModel.updateUser(userId,{name,description})
             return res.status(200).json(update);
         }catch(err){
             res.status(500).json({err: "Server fail"})
